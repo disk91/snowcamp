@@ -53,3 +53,8 @@ The code corresponding to this step is tagged `step-1`
 
 ### Step 2 - bluetooth advertising
 
+We will use the Adafruit Bluefruit nRF52 library to handle the Bluetooth Low Energy (BLE) part of our badge. This library 
+provides functionality to configure the module as a BLE peripheral and broadcast data via advertising. Normally, 
+this library should have been installed automatically when installing the Seeed nRF52 package. If not, you can install it 
+manually via the Arduino library manager (Sketch -> Include Library -> Manage Libraries...) by searching for "Adafruit Bluefruit nRF52".
+
