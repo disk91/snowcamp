@@ -1,6 +1,6 @@
 #include <bluefruit.h>
 
-#define ADV_TIMEOUT   1 // change adv every 5 seconds
+#define ADV_TIMEOUT   1 // change adv every 1 seconds
 
 typedef volatile uint32_t REG32;
 #define pREG32 (REG32 *)
@@ -150,7 +150,7 @@ void startAdv(void)
 
   Bluefruit.Advertising.setStopCallback(adv_stop_callback);
   Bluefruit.Advertising.restartOnDisconnect(true);
-  Bluefruit.Advertising.setInterval(96, 244);    // in units of 0.625 ms (60ms not spam)
+  Bluefruit.Advertising.setInterval(96, 244);    // in units of 0.625 ms (every 60ms, not spam)
   Bluefruit.Advertising.setFastTimeout(ADV_TIMEOUT);      // number of seconds in fast mode
   Bluefruit.Advertising.start(ADV_TIMEOUT);               // Stop advertising entirely after ADV_TIMEOUT seconds 
 }
@@ -178,7 +178,7 @@ void startScan(void) {
   Bluefruit.Scanner.setRxCallback(scan_callback);
   Bluefruit.Scanner.restartOnDisconnect(true);
   Bluefruit.Scanner.filterRssi(-80);
-  Bluefruit.Scanner.setInterval(160, 80);       // in units of 0.625 ms
+  Bluefruit.Scanner.setInterval(160, 80);       // in units of 0.625 ms 50ms every 100ms
   Bluefruit.Scanner.useActiveScan(true);        // Request scan response data
   Bluefruit.Scanner.start(0);                  // 0 = Don't stop scanning after n seconds
 }
