@@ -51,10 +51,37 @@ Only one LED will be lit at a time. To do this, there are several Arduino functi
 
 The code corresponding to this step is tagged `step-1`
 
-### Step 2 - bluetooth advertising
+### Step 2 - Meet & Geek 
 
 We will use the Adafruit Bluefruit nRF52 library to handle the Bluetooth Low Energy (BLE) part of our badge. This library 
 provides functionality to configure the module as a BLE peripheral and broadcast data via advertising. Normally, 
 this library should have been installed automatically when installing the Seeed nRF52 package. If not, you can install it 
 manually via the Arduino library manager (Sketch -> Include Library -> Manage Libraries...) by searching for "Adafruit Bluefruit nRF52".
 
+Here, the objective is to broadcast your preferences (marked with a +) and what you don't like (marked with a -). To do this, we will 
+configure a list of topics by activating the lines that interest us in the "topics" array in the code. Each activated topic will be 
+broadcast via Bluetooth in what is called advertising that any Bluetooth device can see. Here, what we will do is regularly change 
+the device name to transfer this information to other devices.
+In parallel, each device will memorize what each one likes or dislikes and calculate a matching score and a non-matching score. The 
+devices are identified by their MAC address so that they can be distinguished from one another.
+Finally, when two devices are nearby, they will display their matching score through 1 to 3 green LEDs that will be lit or opposition 
+through 3 red LEDs.
+
+When there is no one nearby anymore, the LEDs start blinking in a circular pattern to indicate that we are searching for contacts.
+
+Steps to follow:
+1) Get the code tagged `step-2`
+2) Modify the "topics" array to select your preferences and dislikes
+```C
+const char topics[][TOPIC_SZ] = {
+  "+JAVA",
+  //"-JAVA",
+  //"+PYTHON",
+  "-PYTHON",
+  //"+JSCRIP",
+  //"-JSCRIP",
+```
+3) Switch the device in boot loader mode by double-clicking the reset button (small button near the USB connector)
+4) Compile & upload the code to your badge
+
+The code corresponding to this step is tagged `step-2`
