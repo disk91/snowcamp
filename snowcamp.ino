@@ -268,7 +268,7 @@ void loop() {
     }
   }
 
-  // Detect close devices with -50dB or more 
+  // Detect close devices with -55dBm or more 
   int closeDevices = 0;
   int bestRssi=-120, bestId=MAX_DEVICES+1;
   for ( int i = 0; i < MAX_DEVICES; i++ ) {
